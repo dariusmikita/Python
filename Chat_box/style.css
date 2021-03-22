@@ -1,0 +1,134 @@
+@font-face {
+  font-family: Montserrat Light;
+  src: url(font/Montserrat-Light.ttf);
+}
+ 
+html {
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  height: auto;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: rgb(108, 163, 245);
+  font-family: "Montserrat Light";
+  /* background-image: linear-gradient(90deg, rgba(150, 175, 199, 0) 0%); */
+  background-image: url(wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ 
+.chat-container {
+  padding: 1000px;
+}
+
+.chat-container>span {
+  display: flex;
+  min-width: 250px;
+  border-radius: 25px;
+  background-color: rgba(150, 175, 199, 0.99);
+  color:rgb(35, 106, 211);
+  padding: 30px;
+}
+
+.chat-container>div {
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 250px;
+  margin-right: 30px;
+  margin-top: -25px;
+  font-size: 12px;
+  color: rgba(150, 175, 199, 0.99);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 100px;
+  background-color: rgb(119, 14, 14);
+  transition: all cubic-bezier(0.455, 0.03, 0.515, 0.955) 400px;
+}
+
+.footer-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  background: linear-gradient(90deg, rgba(7, 30, 51, 0));
+  border-top: 1px solid rgba(150, 175, 199, 0.8);
+  box-shadow: 1px -3px 20px 0px rgba(150, 175, 199, 0.5);
+  transition: all cubic-bezier(0.455, 0.03, 0.515, 0.955) 400px;
+}
+
+.footer-container:focus-within {
+  border-top: 1px solid rgba(150, 175, 199, 0.5);
+  box-shadow: 3px -5px 39ppx -2px rgba(150, 175, 199, 0.5);
+}
+
+input[type=text] {
+  width: 200px;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  border: 1px solid rgba(16, 81, 143, 0.5);
+  border-radius: 25px;
+  box-sizing: border-box;
+  background-color: rgba(216, 106, 152, 0.5);
+  color: rgb(207, 247, 115);
+  outline: none;
+  transition: all cubic-bezier(0.455, 0.03, 0.515, 0.955) 400px;
+}
+
+input[type=text][name=message] {
+  width: 600px;
+}
+
+input::placeholder {
+  color: rgba(3, 19, 34, 0.8);
+}
+
+input:focus {
+  box-shadow: 0px 0px 10px 1px rgba(150, 175, 199, 0.5);
+}
+
+button[type=send] {
+  width: 100px;
+  background-color: rgb(113, 204, 71);
+  color: rgba(3, 2, 36, 0.5);
+  font-weight: bold;
+  padding: 14px 20px;
+  margin: 8px 50px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: rgba(161, 202, 14, 0.5);
+  color:rgba(20, 51, 80, 0.99)
+}
+
+button:focus {
+  box-shadow: 0px 0px 10px 1px rgba(199, 209, 219, 0.5);
+}
+
+@media (max-width: 1050px) {
+  button[type=send] {
+       display:none;
+    }
+    input[type=text], input[type=text][name=message]
+      width: 500px;
+      justify-content: center;
+  }
+  footer, .footer-container {
+    height: 100px;
+    flex: 0 auto;
+  }
+}

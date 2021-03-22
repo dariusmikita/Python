@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Chat</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
+     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+</head>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    @keyframes animationTest {
+      0% {
+        transform: scale(1);
+        background-color: rgb(156, 243, 156);
+      }
+
+      50% {
+        background-color: #faf;
+        transform: translate(100px, 100px);
+      }
+
+      100% {
+        transform: scale(2);
+        background-color: black;
+      }
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 500px;
+      height: 400px;
+      border: solid 2px rgb(161, 22, 22);
+      border-radius: 25px;
+      background-color: rgb(144, 163, 151);
+      overflow-x: hidden;
+      overflow-x: auto;
+      /* animation: animationTest 2s linear 0s 1 forwards;
+      animation-iteration-count: 1; */
+    }
+
+    @keyframes messageAppear {
+      0% {
+        transform: translate(-100%, 0);
+      }
+
+      50% {
+        background-color: rgba(177, 226, 43, 0.5);
+      }
+
+      99% {
+        background-color: rgb(43, 226, 67);
+      }
+
+      100% {
+        transform: translate(0, 0);
+        background-color: rgba(43, 116, 226, 0.5);
+      }
+    }
+
+    .message {
+      width: calc(100% - 12px);
+      min-height: 44px;
+      border-radius: 22px;
+      background-color: rgba(138, 43, 226, 0.5);
+      border: solid 2px rgb(161, 22, 22);
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      animation: messageAppear 600ms linear 0s 1 forwards;
+      animation-timing-function: cubic-bezier(.7, .71, .5, .9);
+      transition: background-color 200ms linear;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .message:hover {
+      background-color: rgb(149, 109, 187);
+    }
+
+    .message:first-child {
+      border-top-width: 2px;
+    }
+
+    .message:last-child {
+      border-bottom-width: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+  </div>
+  <form>
+    <label>
+      Name
+      <input name="userName" type="text">
+    </label>
+    <label>
+      Message
+      <input name="message" type="text">
+    </label>
+    <button type="send">Send</button>
+  </form>
+  <script>
+    const container = document.querySelector('.container');
+    const messagesList = [];
+    function addMessage(message, name, time) {
+      const div = document.createElement('div');
+      const nameSpan = document.createElement('span');
+      const messageSpan = document.createElement('span');
+      nameSpan.innerHTML = name + ':';
+      messageSpan.innerHTML = message;
+      div.className = 'message';
+      div.appendChild(nameSpan);
+      div.appendChild(messageSpan);
+      div.title = time;
+      container.prepend(div);
+    }
+    function getMessages() {
+      fetch('https://simutis.dev/api/messages', {
+        method: 'GET'
+      })
+        .then((res) => res.json())
+        .then((messages) => {
+          updateMessages(messages);
+        }).catch(() => { });
+    }
+    function updateMessages(messages) {
+      for (let i = 0; i < messages.length; i += 1) {
+        const {
+          _id,
+          message,
+          time,
+          name
+        } = messages[i];
+        if (!messagesList.includes(_id)) {
+          messagesList.push(_id);
+          addMessage(message, name, time);
+        }
+      }
+      setTimeout(getMessages, 20);
+    }
+    getMessages();
+    document.querySelector('form').onsubmit = function (e) {
+      e.preventDefault();
+      const {
+        target: {
+          message,
+          userName: {
+            value: userName
+          }
+        }
+      } = e;
+      const {
+        value: messageValue
+      } = message;
+      message.value = '';
+      fetch('https://simutis.dev/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: messageValue,
+          name: userName
+        }),
+      })
+    }
+  </script>
+</body>
+
+</html>
