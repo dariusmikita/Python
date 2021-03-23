@@ -90,7 +90,7 @@ input[type=text][name=message] {
 }
 
 input::placeholder {
-  color: rgba(3, 19, 34, 0.8);
+  color: rgba(23, 8, 231, 0.8);
 }
 
 input:focus {
@@ -123,9 +123,9 @@ button:focus {
   button[type=send] {
        display:none;
     }
-    input[type=text], input[type=text][name=message]
-      width: 500px;
-      justify-content: center;
+    input[type=text], input[type=text][name=message] {
+         width: 500px;
+         justify-content: center;
   }
   footer, .footer-container {
     height: 100px;
