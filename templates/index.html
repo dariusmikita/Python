@@ -1,0 +1,140 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Currency Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <body style="background-color:rgb(75, 129, 230)">
+    <body class = "bg-danger">
+    
+            <div class="container">
+        
+                <div class="row">
+        
+                    <div class="col-md-6 mx-auto">
+        
+                        <div class="card card-body text-center mt-5">
+        
+                            <h1 class="heading display-5 pb-3" style="text-shadow: 2px 2px 2px red">Currency Converter</h1>
+
+                            <!-- <h5>Today's rate</h5>
+                            <h5>            </h5> -->
+        
+                        <form id="currency-form" method="post">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text">Currency_1</span>
+                                    <select class="selectpicker" name = "firstCurrency">
+                                     <option>USD</option>
+                                     <option>EUR</option>
+                                     <option>JPY</option>
+                                     <option>BGN</option>
+                                     <option>CZK</option>
+                                     <option>DKK</option>
+                                     <option>GBP</option>          
+                                     <option>HUF</option>
+                                     <option>PLN</option>
+                                     <option>RON</option>
+                                     <option>SEK</option>
+                                     <option>CHF</option>
+                                     <option>ISK</option>
+                                     <option>NOK</option>          
+                                     <option>HRK</option>
+                                     <option>RUB</option>
+                                     <option>TRY</option>
+                                     <option>AUD</option>
+                                     <option>BRL</option>          
+                                     <option>CAD</option>
+                                     <option>CNY</option>
+                                     <option>HKD</option>
+                                     <option>IDR</option>          
+                                     <option>ILS</option>
+                                     <option>INR</option>
+                                     <option>KRW</option>
+                                     <option>MXN</option>          
+                                     <option>MYR</option>
+                                     <option>NZD</option>
+                                     <option>PHP</option>
+                                     <option>SGD</option>
+                                     <option>THB</option>          
+                                     <option>ZAR</option>
+                                    </select>
+               
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text">Currency_2</span>
+                                    <select class="selectpicker" name = "secondCurrency">
+                                            <option>USD</option>
+                                            <option>EUR</option>
+                                            <option>JPY</option>
+                                            <option>BGN</option>
+                                            <option>CZK</option>
+                                            <option>DKK</option>
+                                            <option>GBP</option>          
+                                            <option>HUF</option>
+                                            <option>PLN</option>
+                                            <option>RON</option>
+                                            <option>SEK</option>
+                                            <option>CHF</option>
+                                            <option>ISK</option>
+                                            <option>NOK</option>          
+                                            <option>HRK</option>
+                                            <option>RUB</option>
+                                            <option>TRY</option>
+                                            <option>AUD</option>
+                                            <option>BRL</option>          
+                                            <option>CAD</option>
+                                            <option>CNY</option>
+                                            <option>HKD</option>
+                                            <option>IDR</option>          
+                                            <option>ILS</option>
+                                            <option>INR</option>
+                                            <option>KRW</option>
+                                            <option>MXN</option>          
+                                            <option>MYR</option>
+                                            <option>NZD</option>
+                                            <option>PHP</option>
+                                            <option>SGD</option>
+                                            <option>THB</option>          
+                                            <option>ZAR</option>
+                                           </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="string" class="form-control" name = "amount" placeholder="Amount" min="0" required style="background-color:rgb(185, 200, 230)">
+                            </div>
+                            <div class="form-group">
+                                <input id ="submitbtn" type="submit" value = "Calculate" class = "btn btn-danger" style="background-color:rgb(5, 87, 5)">
+                            </div>
+                        </form>
+                        
+                        {% if info %}
+                        <div id="results" class = "pt-4" style="background-color:rgb(136, 148, 148)">
+                            <h5>Results</h5>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text" style="background-color:rgb(75, 129, 230)" style="border: 5px solid black">{{info.amount}} {{info.firstCurrency}} </span>
+                                    <div class="form-control" id="total" style="background-color:rgb(75, 129, 230)">
+                                       {{info.result }} {{info.secondCurrency}}
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        {% endif %}
+                       
+                       
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+</body>
+</html>
